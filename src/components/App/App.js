@@ -9,9 +9,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [{ name: 'Song Test 1', artist: 'Artist 1', album: 'Almbum 1', id: 1 },
-      { name: 'Song 2', artist: 'Artist 2', album: 'Almbum 2', id: 2 },
-      { name: 'Song 3', artist: 'Artist 3', album: 'Almbum 3', id: 3 }],
+      searchResults: [{ name: 'Song Test 1', artist: 'Artist 1', album: 'Almbum 1', id: 10 },
+      { name: 'Song Test 2', artist: 'Artist 2', album: 'Almbum 2', id: 20 },
+      { name: 'Song Test 3', artist: 'Artist 3', album: 'Almbum 3', id: 30 }],
       playlistName: 'Mars Playlist',
       playlistTrack: [
         { name: 'Song 1', artist: 'Artist 1', album: 'Almbum 1', id: 1 },
@@ -26,7 +26,11 @@ class App extends React.Component {
     if (this.state.playlistTrack.some(element => element.id == track.id)) {
       return
     }
-    this.setState({ playlistTrack: [...this.playlistTrack, track] })
+    this.setState({ playlistTrack: [...this.state.playlistTrack, track] })
+  }
+
+  removeTrack(track) {
+    this.setState({ playlistTrack: this.state.playlistTrack.filter(element => element.id != track.id) })
   }
 
   render() {
