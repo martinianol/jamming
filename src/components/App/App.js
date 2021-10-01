@@ -9,9 +9,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [{ name: 'Song Test 1', artist: 'Artist 1', album: 'Almbum 1', id: 10 },
-      { name: 'Song Test 2', artist: 'Artist 2', album: 'Almbum 2', id: 20 },
-      { name: 'Song Test 3', artist: 'Artist 3', album: 'Almbum 3', id: 30 }],
+      searchResults: [
+        { name: 'Song Test 1', artist: 'Artist 1', album: 'Almbum 1', id: 10 },
+        { name: 'Song Test 2', artist: 'Artist 2', album: 'Almbum 2', id: 20 },
+        { name: 'Song Test 3', artist: 'Artist 3', album: 'Almbum 3', id: 30 }],
       playlistName: 'Mars Playlist',
       playlistTrack: [
         { name: 'Song 1', artist: 'Artist 1', album: 'Almbum 1', id: 1 },
@@ -37,6 +38,10 @@ class App extends React.Component {
 
   updatePlaylistName(name) {
     this.setState({ playlistName: name })
+  }
+
+  savePlayList(playlistName, playlistTrack) {
+
   }
 
   render() {
