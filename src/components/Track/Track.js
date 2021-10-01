@@ -12,7 +12,7 @@ class Track extends React.Component {
   }
 
   addOrRemoveTrack() {
-    return this.props.isRemoval ? '' : this.props.onAdd(this.props.track)
+    return this.props.isRemoval ? this.props.onRemove(this.props.track) : this.props.onAdd(this.props.track)
   }
 
   render() {
