@@ -71,21 +71,19 @@ const Spotify = {
     }).then(response => response.json())
       .then(data => {
         userId = data.id
-        return fetch(`/v1/users/${userId}/playlists`, {
+        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
           method: 'POST',
           headers: headers,
-          body: {
-            name: playListName,
-          }
+          body: JSON.stringify({ name: playListName })
         }).then(response => response.json())
           .then(data => {
             playlistID = data.id
-            return fetch(`/v1/users/${userId}/playlists/${playlistID}/tracks`, {
+            return fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, {
               method: 'POST',
               headers: headers,
-              body: {
-                uris: [tracksURI]
-              }
+              body: JSON.stringify({
+                uris: tracksURI
+              })
             }).then(response => response.json())
               .then(data => {
                 playlistID = data.id
