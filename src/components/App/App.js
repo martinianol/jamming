@@ -52,9 +52,9 @@ class App extends React.Component {
 
   search(term) {
     Spotify.search(term).then(results => {
-      this.setState({ searchResults: results });
-    });
-
+      let filteredResults = results.filter(result => !this.state.playlistTrack.some(track => track['id'] === result.id))
+      this.setState({ searchResults: filteredResults });
+    })
   }
 
   render() {
