@@ -89,7 +89,39 @@ const Spotify = {
           })
       })
 
-  }
+  },
+
+  getMyPlaylists() {
+    let accesToken = this.getAccessToken();
+    let headers = { Authorization: 'Bearer ' + accesToken }
+    let myPlaylists;
+
+    return fetch(`https://api.spotify.com/v1/me/playlists`, {
+      method: 'GET',
+      headers: headers
+    }).then(response => response.json())
+      .then(data => {
+        if (!data.items) {
+          return []
+        }
+        return data.items.map(item => (
+          {
+            name: item.name,
+            id: item.id
+          }))
+      })
+
+  },
+
+  /*   removePlaylist(playlistId) {
+      let accesToken = this.getAccessToken();
+      let headers = { Authorization: 'Bearer ' + accesToken }
+      return fetch(`https://api.spotify.com/v1/me/playlists/${playlistId}`, {
+        method: 'DELETE',
+        headers: headers
+      }).then(response => response.json())
+        .then(data => { console.log(data) })
+    } */
 
 }
 

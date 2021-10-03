@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
+import MyPlaylists from '../MyPlaylists/MyPlaylists';
 
 
 class App extends React.Component {
@@ -15,6 +16,8 @@ class App extends React.Component {
       playlistName: 'New Playlist',
       playlistTrack: [],
       saving: false,
+      myPlaylists: [{ name: 'Mars Playlist', id: 0 }, { name: 'Mars Playlist II', id: 1 }],
+      loading: true,
     };
 
     this.addTrack = this.addTrack.bind(this);
@@ -60,6 +63,20 @@ class App extends React.Component {
     })
   }
 
+  componentDidMount() {
+    Spotify.getMyPlaylists().then(results => {
+      this.setState({ myPlaylists: results, loading: false })
+    })
+    Spotify.getAccessToken()
+  }
+
+  componentDidUpdate() {
+    Spotify.getMyPlaylists().then(results => {
+      this.setState({ myPlaylists: results, loading: false })
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -79,6 +96,10 @@ class App extends React.Component {
             saving={this.state.saving}
           />
         </div>
+        <MyPlaylists
+          loading={this.state.loading}
+          playlists={this.state.myPlaylists}
+        />
       </div>
     );
   }
