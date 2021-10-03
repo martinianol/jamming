@@ -1,7 +1,7 @@
 let accessToken;
 const clientID = '819eee2a867f4306bb4ee16cf9009564';
-/* const redirectURI = 'http://jamming-mars.surge.sh' */
-const redirectURI = 'http://localhost:3000/'
+const redirectURI = 'http://jamming-mars.surge.sh'
+/* const redirectURI = 'http://localhost:3000/' */
 
 const Spotify = {
   getAccessToken() {
